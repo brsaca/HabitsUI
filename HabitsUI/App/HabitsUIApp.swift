@@ -12,6 +12,8 @@ struct HabitsUIApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.font, Font.custom("Helvetica Neue", size: 14))
+
         }
     }
 }
