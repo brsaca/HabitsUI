@@ -7,6 +7,13 @@
 
 import Foundation
 
+///  User
+///
+///  - Properties
+///    - id: UUID
+///    - name: full name
+///    - image: profile image
+///
 struct User {
     let id = UUID()
     let name: String

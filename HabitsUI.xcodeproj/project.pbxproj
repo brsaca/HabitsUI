@@ -16,6 +16,8 @@
 		4B8D6D002ACF2526000CD782 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D6CFF2ACF2526000CD782 /* ContentViewModel.swift */; };
 		4B8D6D022ACF271E000CD782 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D6D012ACF271E000CD782 /* Date.swift */; };
 		4B8D6D052ACF2923000CD782 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D6D042ACF2923000CD782 /* CircleButton.swift */; };
+		4B8D6D082ACF313F000CD782 /* HabitCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D6D072ACF313F000CD782 /* HabitCard.swift */; };
+		4B8D6D0A2ACF354C000CD782 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D6D092ACF354C000CD782 /* Habit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		4B8D6CFF2ACF2526000CD782 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		4B8D6D012ACF271E000CD782 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		4B8D6D042ACF2923000CD782 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		4B8D6D072ACF313F000CD782 /* HabitCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCard.swift; sourceTree = "<group>"; };
+		4B8D6D092ACF354C000CD782 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				4B8D6CFB2ACF21A8000CD782 /* User.swift */,
+				4B8D6D092ACF354C000CD782 /* Habit.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 		4B8D6CFD2ACF224C000CD782 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4B8D6D062ACF3127000CD782 /* Components */,
 				4B8ADA522ACDFB4A0049B799 /* ContentView.swift */,
 			);
 			path = View;
@@ -150,6 +156,14 @@
 			isa = PBXGroup;
 			children = (
 				4B8D6D042ACF2923000CD782 /* CircleButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		4B8D6D062ACF3127000CD782 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4B8D6D072ACF313F000CD782 /* HabitCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -228,7 +242,9 @@
 				4B8D6CFC2ACF21A8000CD782 /* User.swift in Sources */,
 				4B8D6D022ACF271E000CD782 /* Date.swift in Sources */,
 				4B8ADA532ACDFB4A0049B799 /* ContentView.swift in Sources */,
+				4B8D6D082ACF313F000CD782 /* HabitCard.swift in Sources */,
 				4B8ADA512ACDFB4A0049B799 /* HabitsUIApp.swift in Sources */,
+				4B8D6D0A2ACF354C000CD782 /* Habit.swift in Sources */,
 				4B8ADA642ACE048E0049B799 /* Color.swift in Sources */,
 				4B8D6D002ACF2526000CD782 /* ContentViewModel.swift in Sources */,
 			);

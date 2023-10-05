@@ -17,6 +17,7 @@ struct ContentView: View {
             NavBar
             
             // Your habits
+            YourHabits
             
             // Water
             
@@ -51,6 +52,30 @@ extension ContentView {
             Divider()
                 .overlay(.black)
         }
+    }
+    
+    var YourHabits: some View {
+        VStack(alignment: .leading) {
+            VStack(alignment: .leading) {
+                Text("track")
+                    .font(.title)
+                    .fontWeight(.regular)
+                    .foregroundStyle(Color.cGray)
+                Text("your habits")
+                    .font(.system(size: 66))
+                    .fontWeight(.regular)
+            }
+            .padding(.bottom, 30)
+            
+            HStack {
+                HabitCard(habit: Habit.myHabits[0])
+                HabitCard(habit: Habit.myHabits[1])
+            }
+            .padding(.bottom, 14)
+            
+            HabitCard(habit: Habit.myHabits[2])
+        }
+        .padding(.vertical, 20)
     }
 }
 
