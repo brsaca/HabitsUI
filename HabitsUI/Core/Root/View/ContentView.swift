@@ -19,8 +19,6 @@ struct ContentView: View {
             // Your habits
             YourHabits
             
-            // Water
-            
             Spacer()
         }
         .padding(.vertical, 20)
@@ -56,7 +54,8 @@ extension ContentView {
     
     var YourHabits: some View {
         VStack(alignment: .leading) {
-            VStack(alignment: .leading) {
+            // Title
+            VStack(alignment: .leading, spacing: 0) {
                 Text("track")
                     .font(.title)
                     .fontWeight(.regular)
@@ -64,15 +63,18 @@ extension ContentView {
                 Text("your habits")
                     .font(.system(size: 66))
                     .fontWeight(.regular)
+                    .padding(.top, -16)
             }
             .padding(.bottom, 30)
             
+            // Days & Min habits
             HStack {
                 HabitCard(habit: Habit.myHabits[0])
                 HabitCard(habit: Habit.myHabits[1])
             }
             .padding(.bottom, 14)
             
+            // Amount habit
             HabitCard(habit: Habit.myHabits[2])
         }
         .padding(.vertical, 20)
