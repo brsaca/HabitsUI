@@ -11,38 +11,22 @@ import SwiftUI
 struct CompletedHabitsView: View {
     // MARK: View Properties
     let vm: CompletedHabitsViewModel = CompletedHabitsViewModel()
+    var dismissCallback: () -> Void
     
     var body: some View {
         VStack {
-            NavBar
+            CompletedHabitsHeader(action: {})
             
             HabitsList
         }
         .padding()
+        .onDisappear{
+            dismissCallback()
+        }
     }
 }
 
 extension CompletedHabitsView {
-    var NavBar: some View {
-        HStack(alignment: .center) {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("habits")
-                    .font(.title)
-                    .fontWeight(.regular)
-                    .foregroundStyle(Color.cGray)
-                Text("completed")
-                    .font(.largeTitle)
-                    .fontWeight(.regular)
-                    .padding(.top, -6)
-            }
-            
-            Spacer()
-            
-            CircleButton(image: "arrow.up.right", action: {})
-            
-        }
-    }
-    
     var HabitsList: some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack {
@@ -51,10 +35,12 @@ extension CompletedHabitsView {
                 }
             }
         }
+        .frame(width: .infinity, alignment: .leading)
+        .presentationDetents( [.height(250)] )
     }
 }
 
 // MARK: - Previews
 #Preview {
-    CompletedHabitsView()
+    CompletedHabitsView(dismissCallback: {})
 }

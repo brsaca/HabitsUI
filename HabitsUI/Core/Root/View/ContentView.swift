@@ -10,19 +10,49 @@ import SwiftUI
 struct ContentView: View {
     // MARK: View Properties
     let viewModel = ContentViewModel()
+    @State var showCompletedHabits: Bool
+    
+    // Values for CompletedHabitsHeader animation 
+    @State private var opacity: Double  = 0.0
+    @State private var yOffset: CGFloat = 50
+    @State private var scale: CGFloat = 0.1
     
     var body: some View {
-        VStack {
-            // NavBar
-            NavBar
-            
-            // Your habits
-            YourHabits
-            
-            Spacer()
+        ZStack {
+            VStack {
+                // NavBar
+                NavBar
+                
+                // Your habits
+                YourHabits
+                
+                Spacer()
+                
+                if (!showCompletedHabits) {
+                    CompletedHabitsHeader(action: {
+                        withAnimation{
+                            animateHeaderAppearance(for: false)
+                            showCompletedHabits.toggle()
+                        }
+                            
+                    })
+                    .opacity(opacity) // Start with 0 opacity
+                    .scaleEffect(x: scale, y: scale) // Start with scaled down size
+                    .offset(y: yOffset) // Start with offset
+                    .onAppear {
+                        withAnimation {
+                            animateHeaderAppearance(for: true)
+                        }
+                    }
+                }
+            }
+            .padding(.vertical, 20)
+            .padding(.horizontal, 30)
+            .sheet(isPresented: $showCompletedHabits) {
+                CompletedHabitsView(dismissCallback: {})
+                    .ignoresSafeArea(.all)
+            }
         }
-        .padding(.vertical, 20)
-        .padding(.horizontal, 30)
     }
 }
 
@@ -81,7 +111,15 @@ extension ContentView {
     }
 }
 
+extension ContentView {
+    private func animateHeaderAppearance(for isVisible:Bool) {
+        opacity = isVisible ? 1.0 : 0.0
+        yOffset = isVisible ? 0 : 50
+        scale = isVisible ? 1 : 0.1
+    }
+}
+
 // MARK: - Previews
 #Preview {
-    ContentView()
+    ContentView(showCompletedHabits: true)
 }

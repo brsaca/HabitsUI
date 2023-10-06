@@ -11,7 +11,7 @@ import SwiftUI
 struct HabitsUIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(showCompletedHabits: true)
                 .environment(\.font, Font.custom("Helvetica Neue", size: 14))
 
         }
