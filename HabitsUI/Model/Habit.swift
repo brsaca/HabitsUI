@@ -58,7 +58,7 @@ enum KindGoal {
 ///    - max: max amount saved
 ///    - strike: days/in row
 ///    - kind: (min,, days, amount)
-struct Habit {
+struct Habit: Identifiable {
     let id = UUID()
     let name: String
     let image: String
@@ -104,5 +104,7 @@ extension Habit {
         Habit(name: "no cigarrettes", image: "lungs", details: nil, progress: 9, goal: 21, max: 10, streaks: 15, kind: .days),
         Habit(name: "yoga", image: "figure.yoga", details: nil,  progress: 0, goal: 30, max: 1, streaks: 20, kind: .min),
         Habit(name: "water", image: "cup.and.saucer", details: "glasses", progress: 9, goal: 10, max: 17, streaks: 10, kind: .amount),
+        Habit(name: "read", image: "books.vertical", details: nil, progress: 60, goal: 45, max: 90, streaks: 10, kind: .min),
+        Habit(name: "run", image: "figure.run", details: nil, progress: 30, goal: 30, max: 45, streaks: 5, kind: .min),
     ]
 }
