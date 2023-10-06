@@ -6,3 +6,9 @@
 //
 
 import Foundation
+import Observation
+
+@Observable
+class CompletedHabitsViewModel {
+    let habits: [Habit] = Habit.myHabits.filter({$0.progress >= $0.goal})
+}
