@@ -41,11 +41,11 @@ struct HabitDetailView: View {
                         animateHeaderAppearance(for: false)
                         showHistory.toggle()
                     }
-                    
                 })
+                .offset(y: yOffset)
                 .opacity(opacity) // Start with 0 opacity
                 .scaleEffect(x: scale, y: scale) // Start with scaled down size
-                .offset(y: yOffset) // Start with offset
+                .padding()// Start with offset
                 .onAppear {
                     withAnimation {
                         animateHeaderAppearance(for: true)
@@ -54,10 +54,10 @@ struct HabitDetailView: View {
             }
         }
         .background(Color.cBlue)
-      /*  .sheet(isPresented: $showHistory) {
+        .sheet(isPresented: $showHistory) {
             HistoryHabitView(habit: vm.habit, dismissCallback: {})
                 .ignoresSafeArea(.all)
-        } */
+        } 
     }
 }
 

@@ -11,6 +11,7 @@ struct HistoryHabitView: View {
     // MARK: View Properties
     let habit: Habit
     var dismissCallback: () -> Void
+    @State private var selectedDate: Date = Date()
     
     var body: some View {
         VStack {
@@ -18,9 +19,11 @@ struct HistoryHabitView: View {
             SectionHeader(kindView:.history, action: dismissCallback)
             
             Spacer()
-                .frame(height: 200)
+            
         }
         .padding()
+        .frame(width: .infinity, alignment: .leading)
+        .presentationDetents( [.height(350)] )
     }
 }
 
