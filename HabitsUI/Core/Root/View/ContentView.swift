@@ -18,6 +18,8 @@ struct ContentView: View {
     @State private var yOffset: CGFloat = 50
     @State private var scale: CGFloat = 0.1
     
+    @State private var habitSelected: Habit?
+    
     var body: some View {
         ZStack {
             VStack {
@@ -54,7 +56,9 @@ struct ContentView: View {
                     .ignoresSafeArea(.all)
             }
             .fullScreenCover(isPresented: $showHabitDetail, content: {
-                HabitDetailView()
+                if let habit = habitSelected {
+                    HabitDetailView(habit: habit)
+                }
             })
         }
     }
@@ -111,6 +115,7 @@ extension ContentView {
             // Amount habit
             HabitCard(habit: Habit.myHabits[2])
                 .onTapGesture {
+                    habitSelected = Habit.myHabits[2]
                     showHabitDetail.toggle()
                 }
         }

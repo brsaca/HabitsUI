@@ -69,6 +69,7 @@ struct Habit: Identifiable {
     let streaks: Int
     let kind: KindGoal
     
+    /// 5 min || / 10 days || / 20 glasses
     var detailsGoal: String {
         switch kind {
         case .min: return "\(goal) min"
@@ -77,15 +78,18 @@ struct Habit: Identifiable {
         }
     }
     
+    /// glasses || books
     var onlyDetails: String {
         guard let details = self.details else { return ""}
         return "\(details):"
     }
     
+    /// 10 / 20
     var progressSlashGoal: String {
         return "\(progress) / \(goal)"
     }
     
+    /// 5 min  || 10 days
     var maxDetails: String {
         switch kind {
         case .min: return "\(max) min"
@@ -94,6 +98,7 @@ struct Habit: Identifiable {
         }
     }
     
+    /// 20 days
     var streaksDetail: String {
         return "\(streaks) days"
     }

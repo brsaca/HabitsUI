@@ -23,6 +23,7 @@
 		4B9A3C692AD06B3D00EFA882 /* HabitRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A3C682AD06B3D00EFA882 /* HabitRow.swift */; };
 		4B9A3C6B2AD07F0C00EFA882 /* CompletedHabitsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A3C6A2AD07F0C00EFA882 /* CompletedHabitsHeader.swift */; };
 		4BA355492AD4858800CD1BCE /* HabitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA355482AD4858800CD1BCE /* HabitDetailView.swift */; };
+		4BA3554B2AD48AAA00CD1BCE /* HabitDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA3554A2AD48AAA00CD1BCE /* HabitDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		4B9A3C682AD06B3D00EFA882 /* HabitRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRow.swift; sourceTree = "<group>"; };
 		4B9A3C6A2AD07F0C00EFA882 /* CompletedHabitsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedHabitsHeader.swift; sourceTree = "<group>"; };
 		4BA355482AD4858800CD1BCE /* HabitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailView.swift; sourceTree = "<group>"; };
+		4BA3554A2AD48AAA00CD1BCE /* HabitDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 		4BA355472AD4857200CD1BCE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4BA3554A2AD48AAA00CD1BCE /* HabitDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				4B9A3C692AD06B3D00EFA882 /* HabitRow.swift in Sources */,
 				4BA355492AD4858800CD1BCE /* HabitDetailView.swift in Sources */,
 				4B8ADA642ACE048E0049B799 /* Color.swift in Sources */,
+				4BA3554B2AD48AAA00CD1BCE /* HabitDetailViewModel.swift in Sources */,
 				4B8D6D002ACF2526000CD782 /* ContentViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
