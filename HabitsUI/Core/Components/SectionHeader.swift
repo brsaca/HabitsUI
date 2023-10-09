@@ -1,5 +1,5 @@
 //
-//  CompletedHabitsHeader.swift
+//  HabitsHeader.swift
 //  HabitsUI
 //
 //  Created by Brenda Saavedra Cantu on 06/10/23.
@@ -7,16 +7,17 @@
 
 import SwiftUI
 
-/// CompletedHabitsHeader. of completed habits
+/// SectionHeader. of completed habits
 ///
 /// How to use it.
 /// ```
-/// CompletedHabitsHeader(action: {})
+/// SectionHeader(sectionTitle: 'completed', action: {})
 /// ```
 ///
 
-struct CompletedHabitsHeader: View {
+struct SectionHeader: View {
     // MARK: View Properties
+    let sectionTitle: String
     let action: () -> Void
     
     var body: some View {
@@ -26,7 +27,7 @@ struct CompletedHabitsHeader: View {
                     .font(.title)
                     .fontWeight(.regular)
                     .foregroundStyle(Color.cGray)
-                Text("completed")
+                Text(sectionTitle)
                     .font(.largeTitle)
                     .fontWeight(.regular)
                     .padding(.top, -6)
@@ -41,5 +42,5 @@ struct CompletedHabitsHeader: View {
 }
 
 #Preview {
-    CompletedHabitsHeader(action: {})
+    SectionHeader(sectionTitle: "completed", action: {})
 }

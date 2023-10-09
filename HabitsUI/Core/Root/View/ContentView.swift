@@ -32,7 +32,7 @@ struct ContentView: View {
                 Spacer()
                 
                 if (!showCompletedHabits) {
-                    CompletedHabitsHeader(action: {
+                    SectionHeader(sectionTitle: "completed", action: {
                         withAnimation{
                             animateHeaderAppearance(for: false)
                             showCompletedHabits.toggle()
