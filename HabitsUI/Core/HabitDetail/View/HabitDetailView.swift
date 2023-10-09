@@ -11,12 +11,14 @@ struct HabitDetailView: View {
     //MARK: View Properties
     let vm: HabitDetailViewModel
     @Environment(\.dismiss) var dismiss
+    @State private var showHistory: Bool = true
     
     init(habit:Habit) {
         self.vm = HabitDetailViewModel(habit: habit)
     }
     
     var body: some View {
+        
         VStack {
             // NavBar
             NavBar
@@ -28,8 +30,16 @@ struct HabitDetailView: View {
             DetailsGoal
             
             Spacer()
+            
+            if(!showHistory) {
+                
+            }
         }
         .background(Color.cBlue)
+        .sheet(isPresented: $showHistory) {
+           // HistoryHabitsView(habit: habit, dismissCallback: {})
+           //     .ignoresSafeArea(.all)
+        }
     }
 }
 

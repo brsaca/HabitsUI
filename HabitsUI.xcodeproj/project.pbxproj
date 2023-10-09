@@ -24,6 +24,7 @@
 		4B9A3C6B2AD07F0C00EFA882 /* CompletedHabitsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A3C6A2AD07F0C00EFA882 /* CompletedHabitsHeader.swift */; };
 		4BA355492AD4858800CD1BCE /* HabitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA355482AD4858800CD1BCE /* HabitDetailView.swift */; };
 		4BA3554B2AD48AAA00CD1BCE /* HabitDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA3554A2AD48AAA00CD1BCE /* HabitDetailViewModel.swift */; };
+		4BA355512AD49DF600CD1BCE /* HistoryHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA355502AD49DF600CD1BCE /* HistoryHabitView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		4B9A3C6A2AD07F0C00EFA882 /* CompletedHabitsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedHabitsHeader.swift; sourceTree = "<group>"; };
 		4BA355482AD4858800CD1BCE /* HabitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailView.swift; sourceTree = "<group>"; };
 		4BA3554A2AD48AAA00CD1BCE /* HabitDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailViewModel.swift; sourceTree = "<group>"; };
+		4BA355502AD49DF600CD1BCE /* HistoryHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHabitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +120,9 @@
 			children = (
 				4B9A3C5F2AD065B500EFA882 /* CompletedHabits */,
 				4B8D6D032ACF2908000CD782 /* Components */,
-				4B8ADA622ACE03CB0049B799 /* Root */,
 				4B8D6CFA2ACF213C000CD782 /* HabitDetail */,
+				4BA3554D2AD49DD200CD1BCE /* HistoryHabit */,
+				4B8ADA622ACE03CB0049B799 /* Root */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -234,6 +237,30 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		4BA3554D2AD49DD200CD1BCE /* HistoryHabit */ = {
+			isa = PBXGroup;
+			children = (
+				4BA3554E2AD49DDD00CD1BCE /* View */,
+				4BA3554F2AD49DE200CD1BCE /* ViewModel */,
+			);
+			path = HistoryHabit;
+			sourceTree = "<group>";
+		};
+		4BA3554E2AD49DDD00CD1BCE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4BA355502AD49DF600CD1BCE /* HistoryHabitView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4BA3554F2AD49DE200CD1BCE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -310,6 +337,7 @@
 				4B8D6D022ACF271E000CD782 /* Date.swift in Sources */,
 				4B9A3C662AD0662800EFA882 /* CompletedHabitsViewModel.swift in Sources */,
 				4B8ADA532ACDFB4A0049B799 /* ContentView.swift in Sources */,
+				4BA355512AD49DF600CD1BCE /* HistoryHabitView.swift in Sources */,
 				4B8D6D082ACF313F000CD782 /* HabitCard.swift in Sources */,
 				4B8ADA512ACDFB4A0049B799 /* HabitsUIApp.swift in Sources */,
 				4B9A3C6B2AD07F0C00EFA882 /* CompletedHabitsHeader.swift in Sources */,
