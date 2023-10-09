@@ -18,7 +18,7 @@ struct ContentView: View {
     @State private var yOffset: CGFloat = 50
     @State private var scale: CGFloat = 0.1
     
-    @State private var habitSelected: Habit?
+    private var habitSelected: Habit?
     
     var body: some View {
         ZStack {
@@ -32,7 +32,7 @@ struct ContentView: View {
                 Spacer()
                 
                 if (!showCompletedHabits) {
-                    SectionHeader(sectionTitle: "completed", action: {
+                    SectionHeader(kindView: .completed, action: {
                         withAnimation{
                             animateHeaderAppearance(for: false)
                             showCompletedHabits.toggle()
@@ -115,7 +115,7 @@ extension ContentView {
             // Amount habit
             HabitCard(habit: Habit.myHabits[2])
                 .onTapGesture {
-                    habitSelected = Habit.myHabits[2]
+                    
                     showHabitDetail.toggle()
                 }
         }

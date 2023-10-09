@@ -11,23 +11,42 @@ import SwiftUI
 ///
 /// How to use it.
 /// ```
-/// SectionHeader(sectionTitle: 'completed', action: {})
+/// SectionHeader(kindView: .completed, action: {})
 /// ```
 ///
 
+enum KindView {
+    case completed
+    case history
+    
+    var title: String {
+        switch self {
+        case .completed: return "habits"
+        case .history: return "habit"
+        }
+    }
+    
+    var subTitle: String {
+        switch self {
+        case .completed: return "completed"
+        case .history: return "history"
+        }
+    }
+}
+
 struct SectionHeader: View {
     // MARK: View Properties
-    let sectionTitle: String
+    let kindView: KindView
     let action: () -> Void
     
     var body: some View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 0) {
-                Text("habits")
+                Text(kindView.title)
                     .font(.title)
                     .fontWeight(.regular)
                     .foregroundStyle(Color.cGray)
-                Text(sectionTitle)
+                Text(kindView.subTitle)
                     .font(.largeTitle)
                     .fontWeight(.regular)
                     .padding(.top, -6)
@@ -41,6 +60,11 @@ struct SectionHeader: View {
     }
 }
 
-#Preview {
-    SectionHeader(sectionTitle: "completed", action: {})
+// MARK: - Previews
+#Preview("completed") {
+    SectionHeader(kindView: .completed, action: {})
+}
+
+#Preview("history") {
+    SectionHeader(kindView: .history, action: {})
 }

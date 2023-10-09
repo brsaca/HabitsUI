@@ -13,12 +13,16 @@ struct HabitDetailView: View {
     @Environment(\.dismiss) var dismiss
     @State private var showHistory: Bool = true
     
+    // Values for CompletedHabitsHeader animation
+    @State private var opacity: Double  = 0.0
+    @State private var yOffset: CGFloat = 50
+    @State private var scale: CGFloat = 0.1
+    
     init(habit:Habit) {
         self.vm = HabitDetailViewModel(habit: habit)
     }
     
     var body: some View {
-        
         VStack {
             // NavBar
             NavBar
@@ -32,14 +36,28 @@ struct HabitDetailView: View {
             Spacer()
             
             if(!showHistory) {
-                
+                SectionHeader(kindView: .history, action: {
+                    withAnimation{
+                        animateHeaderAppearance(for: false)
+                        showHistory.toggle()
+                    }
+                    
+                })
+                .opacity(opacity) // Start with 0 opacity
+                .scaleEffect(x: scale, y: scale) // Start with scaled down size
+                .offset(y: yOffset) // Start with offset
+                .onAppear {
+                    withAnimation {
+                        animateHeaderAppearance(for: true)
+                    }
+                }
             }
         }
         .background(Color.cBlue)
-        .sheet(isPresented: $showHistory) {
-           // HistoryHabitsView(habit: habit, dismissCallback: {})
-           //     .ignoresSafeArea(.all)
-        }
+      /*  .sheet(isPresented: $showHistory) {
+            HistoryHabitView(habit: vm.habit, dismissCallback: {})
+                .ignoresSafeArea(.all)
+        } */
     }
 }
 
@@ -107,6 +125,14 @@ extension HabitDetailView {
                 .padding(.bottom, 5)
                 .foregroundStyle(Color.cGray)
         }
+    }
+}
+
+extension HabitDetailView {
+    private func animateHeaderAppearance(for isVisible:Bool) {
+        opacity = isVisible ? 1.0 : 0.0
+        yOffset = isVisible ? 0 : 50
+        scale = isVisible ? 1 : 0.1
     }
 }
 

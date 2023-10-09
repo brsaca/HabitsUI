@@ -13,8 +13,14 @@ struct HistoryHabitView: View {
     var dismissCallback: () -> Void
     
     var body: some View {
-        // Header
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            // Header
+            SectionHeader(kindView:.history, action: dismissCallback)
+            
+            Spacer()
+                .frame(height: 200)
+        }
+        .padding()
     }
 }
 

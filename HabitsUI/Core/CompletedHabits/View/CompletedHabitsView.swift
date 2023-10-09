@@ -15,7 +15,7 @@ struct CompletedHabitsView: View {
     
     var body: some View {
         VStack {
-            SectionHeader(sectionTitle: "completed", action: {})
+            SectionHeader(kindView: .completed, action: {})
             
             HabitsList
         }
