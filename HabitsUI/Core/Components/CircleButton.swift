@@ -11,6 +11,17 @@ struct CircleButton: View {
     //MARK: View Properties
     let image: String
     let action: () -> Void
+    let foregroundColor: Color
+    let backgroundColor: Color
+    let strokeColor: Color
+    
+    init(image: String, action: @escaping () -> Void, foregroundColor: Color = .black, backgroundColor: Color = .clear, strokeColor: Color = .black) {
+        self.image = image
+        self.action = action
+        self.foregroundColor = foregroundColor
+        self.backgroundColor = backgroundColor
+        self.strokeColor = strokeColor
+    }
     
     var body: some View {
         Button {
@@ -18,16 +29,16 @@ struct CircleButton: View {
         } label: {
             Image(systemName: image)
                 .resizable()
-                .foregroundColor(.black)
+                .foregroundColor(foregroundColor)
                 .scaledToFit()
                 .frame(width: 24, height: 24)
         }
         .padding()
-        .background(.white)
+        .background(backgroundColor)
         .clipShape( Circle() )
         .overlay(
             Circle()
-                .stroke(.black, lineWidth: 2 )
+                .stroke(strokeColor, lineWidth: 2 )
                 .frame(width: 50, height: 50)
         )
         
@@ -35,6 +46,10 @@ struct CircleButton: View {
 }
 
 // MARK: - Previews
-#Preview {
+#Preview("normal") {
     CircleButton(image: "plus", action: {})
+}
+
+#Preview("bold") {
+    CircleButton(image: "plus", action: {}, foregroundColor:.white, backgroundColor: .black, strokeColor: .clear)
 }
