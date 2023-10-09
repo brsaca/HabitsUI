@@ -10,7 +10,8 @@ import SwiftUI
 struct ContentView: View {
     // MARK: View Properties
     let viewModel = ContentViewModel()
-    @State var showCompletedHabits: Bool
+    @State private var showCompletedHabits: Bool = true
+    @State private var showHabitDetail: Bool = false
     
     // Values for CompletedHabitsHeader animation 
     @State private var opacity: Double  = 0.0
@@ -52,6 +53,9 @@ struct ContentView: View {
                 CompletedHabitsView(dismissCallback: {})
                     .ignoresSafeArea(.all)
             }
+            .fullScreenCover(isPresented: $showHabitDetail, content: {
+                HabitDetailView()
+            })
         }
     }
 }
@@ -106,6 +110,9 @@ extension ContentView {
             
             // Amount habit
             HabitCard(habit: Habit.myHabits[2])
+                .onTapGesture {
+                    showHabitDetail.toggle()
+                }
         }
         .padding(.vertical, 20)
     }
@@ -121,5 +128,5 @@ extension ContentView {
 
 // MARK: - Previews
 #Preview {
-    ContentView(showCompletedHabits: true)
+    ContentView()
 }
