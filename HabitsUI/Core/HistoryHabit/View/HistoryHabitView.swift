@@ -10,24 +10,43 @@ import SwiftUI
 struct HistoryHabitView: View {
     // MARK: View Properties
     let habit: Habit
-    var dismissCallback: () -> Void
-    @State private var selectedDate: Date = Date()
+    private let gridItems: [GridItem] = [
+        .init(.flexible(), spacing: 5),
+        .init(.flexible(), spacing: 5),
+        .init(.flexible(), spacing: 5),
+        .init(.flexible(), spacing: 5),
+        .init(.flexible(), spacing: 5),
+        .init(.flexible(), spacing: 5),
+        .init(.flexible(), spacing: 5)
+    ]
     
     var body: some View {
         VStack {
             // Header
-            SectionHeader(kindView:.history, action: dismissCallback)
+            SectionHeader(kindView:.history, action: {})
             
-            Spacer()
-            
+            CalendarView
         }
         .padding()
         .frame(width: .infinity, alignment: .leading)
-        .presentationDetents( [.height(350)] )
+        .presentationDetents( [.height(300)] )
+        .background(.white)
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous)) 
+    }
+}
+
+extension HistoryHabitView {
+    var CalendarView: some View {
+        LazyVGrid(columns: gridItems, spacing: 10) {
+            ForEach(CalendarItem.MOCK_CALENDAR, id: \.id) { item in
+                DayItem(calendarItem: item)
+            }
+        }
+        .padding(.horizontal, 24)
     }
 }
 
 // MARK: - Previews
 #Preview {
-    HistoryHabitView(habit: Habit.myHabits[2], dismissCallback: {})
+    HistoryHabitView(habit: Habit.myHabits[2])
 }

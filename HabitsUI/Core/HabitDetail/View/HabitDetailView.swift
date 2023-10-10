@@ -11,12 +11,7 @@ struct HabitDetailView: View {
     //MARK: View Properties
     let vm: HabitDetailViewModel
     @Environment(\.dismiss) var dismiss
-    @State private var showHistory: Bool = true
-    
-    // Values for CompletedHabitsHeader animation
-    @State private var opacity: Double  = 0.0
-    @State private var yOffset: CGFloat = 50
-    @State private var scale: CGFloat = 0.1
+    @State private var isGoalCompleted: Bool = false
     
     init(habit:Habit) {
         self.vm = HabitDetailViewModel(habit: habit)
@@ -27,37 +22,25 @@ struct HabitDetailView: View {
             // NavBar
             NavBar
             
-            // Current Counter
-            CurrentCounter
-            
-            // Goal
-            DetailsGoal
+            if (isGoalCompleted) {
+                // Message Completed
+                MessageStreak
+            }else{
+                // Current Counter
+                CurrentCounter
+                
+                // Goal
+                DetailsGoal
+            }
             
             Spacer()
             
-            if(!showHistory) {
-                SectionHeader(kindView: .history, action: {
-                    withAnimation{
-                        animateHeaderAppearance(for: false)
-                        showHistory.toggle()
-                    }
-                })
-                .offset(y: yOffset)
-                .opacity(opacity) // Start with 0 opacity
-                .scaleEffect(x: scale, y: scale) // Start with scaled down size
-                .padding()// Start with offset
-                .onAppear {
-                    withAnimation {
-                        animateHeaderAppearance(for: true)
-                    }
-                }
-            }
+            // History
+            HistoryHabitView(habit: vm.habit)
         }
+        .padding(.top, 60)
         .background(Color.cBlue)
-        .sheet(isPresented: $showHistory) {
-            HistoryHabitView(habit: vm.habit, dismissCallback: {})
-                .ignoresSafeArea(.all)
-        } 
+        .ignoresSafeArea(.all)
     }
 }
 
@@ -91,6 +74,25 @@ extension HabitDetailView {
         .padding(.horizontal, 30)
     }
     
+    var MessageStreak: some View {
+        VStack {
+            Spacer()
+            
+            Text("streak!")
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+            
+            Text("you've been sticking to your goal for 8 consecutive days")
+                .multilineTextAlignment(.center)
+                .lineLimit(2)
+                .padding(.top, 10)
+                .foregroundStyle(Color.cGray)
+            
+            Spacer()
+        }
+        
+    }
+    
     var CurrentCounter: some View {
         HStack(spacing: 5) {
             CircleButton(image: "minus", action: {
@@ -108,6 +110,11 @@ extension HabitDetailView {
             CircleButton(image: "plus", action: {
                 withAnimation(.easeInOut) {
                     vm.currentProgress += 1
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        withAnimation(.smooth) {
+                            isGoalCompleted = vm.currentProgress == vm.habit.goal
+                        }
+                    }
                 }
             }, foregroundColor:.white, backgroundColor: .black, strokeColor: .clear)
         }
@@ -125,14 +132,6 @@ extension HabitDetailView {
                 .padding(.bottom, 5)
                 .foregroundStyle(Color.cGray)
         }
-    }
-}
-
-extension HabitDetailView {
-    private func animateHeaderAppearance(for isVisible:Bool) {
-        opacity = isVisible ? 1.0 : 0.0
-        yOffset = isVisible ? 0 : 50
-        scale = isVisible ? 1 : 0.1
     }
 }
 
