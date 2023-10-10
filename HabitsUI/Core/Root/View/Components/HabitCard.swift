@@ -20,16 +20,33 @@ import SwiftUI
 struct HabitCard: View {
     // MARK: View Properties
     let habit: Habit
+    let namespace: Namespace.ID?
+    
+    init(habit: Habit, namespace: Namespace.ID? = nil) {
+        self.habit = habit
+        self.namespace = namespace
+    }
     
     var body: some View {
         VStack(spacing: 20) {
             HStack {
-                Image(systemName: habit.image)
-                    .resizable()
-                    .frame(width: 20, height:20)
-                
-                Text(habit.name)
-                    .font(habit.kind == .amount ? .largeTitle : .subheadline)
+                if let namespace = namespace {
+                    Image(systemName: habit.image)
+                        .resizable()
+                        .frame(width: 20, height:20)
+                        .matchedGeometryEffect(id: "icon", in: namespace)
+                    
+                    Text(habit.name)
+                        .font(habit.kind == .amount ? .largeTitle : .subheadline)
+                        .matchedGeometryEffect(id: "name", in: namespace)
+                } else {
+                    Image(systemName: habit.image)
+                        .resizable()
+                        .frame(width: 20, height:20)
+                    
+                    Text(habit.name)
+                        .font(habit.kind == .amount ? .largeTitle : .subheadline)
+                }
                 
                 Spacer()
             }
@@ -94,13 +111,16 @@ extension HabitCard {
 
 // MARK: - Previews
 #Preview("Days") {
-    HabitCard(habit: Habit.myHabits[0])
+    @Namespace var namespace
+    return HabitCard(habit: Habit.myHabits[0], namespace: namespace)
 }
 
 #Preview("Minutes") {
-    HabitCard(habit: Habit.myHabits[1])
+    @Namespace var namespace
+    return HabitCard(habit: Habit.myHabits[1], namespace: namespace)
 }
 
 #Preview("Amount") {
-    HabitCard(habit: Habit.myHabits[2])
+    @Namespace var namespace
+    return HabitCard(habit: Habit.myHabits[2], namespace: namespace)
 }

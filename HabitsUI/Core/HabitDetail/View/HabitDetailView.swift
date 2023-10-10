@@ -12,9 +12,14 @@ struct HabitDetailView: View {
     let vm: HabitDetailViewModel
     @Environment(\.dismiss) var dismiss
     @State private var isGoalCompleted: Bool = false
+    @Binding var showHabitDetail: Bool
+    @State private var showAllScreen: Bool = false
+    var namespace: Namespace.ID
     
-    init(habit:Habit) {
+    init(habit:Habit, namespace: Namespace.ID, showHabitDetail: Binding<Bool>) {
         self.vm = HabitDetailViewModel(habit: habit)
+        self.namespace = namespace
+        self._showHabitDetail = showHabitDetail
     }
     
     var body: some View {
@@ -22,21 +27,33 @@ struct HabitDetailView: View {
             // NavBar
             NavBar
             
-            if (isGoalCompleted) {
-                // Message Completed
-                MessageStreak
-            }else{
-                // Current Counter
-                CurrentCounter
-                
-                // Goal
-                DetailsGoal
+            if (showAllScreen) {
+                if (isGoalCompleted) {
+                    // Message Completed
+                    MessageStreak
+                }else{
+                    // Current Counter
+                    CurrentCounter
+                    
+                    // Goal
+                    DetailsGoal
+                }
             }
             
             Spacer()
             
-            // History
-            HistoryHabitView(habit: vm.habit)
+            if (showAllScreen) {
+                // History
+                HistoryHabitView(habit: vm.habit)
+            }
+            
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                withAnimation(.easeInOut) {
+                    showAllScreen.toggle()
+                }
+            }
         }
         .padding(.top, 60)
         .background(Color.cBlue)
@@ -48,9 +65,12 @@ extension HabitDetailView {
     var NavBar: some View {
         VStack(spacing: 20) {
             HStack{
-                CircleButton(image: "arrow.left", action: {
-                    dismiss()
-                })
+                if (showAllScreen) {
+                    CircleButton(image: "arrow.left", action: {
+                        //dismiss()
+                        self.showHabitDetail.toggle()
+                    })
+                }
                 
                 Spacer()
                 
@@ -58,14 +78,18 @@ extension HabitDetailView {
                     Image(systemName: vm.habit.image)
                         .resizable()
                         .frame(width: 20, height:20)
+                        .matchedGeometryEffect(id: "icon", in: namespace)
                     
                     Text(vm.habit.name)
                         .fontWeight(.semibold)
+                        .matchedGeometryEffect(id: "name", in: namespace)
                 }
                 
                 Spacer()
                 
-                CircleButton(image: "gearshape", action: {})
+                if (showAllScreen) {
+                    CircleButton(image: "gearshape", action: {})
+                }
             }
             
             Divider()
@@ -137,5 +161,6 @@ extension HabitDetailView {
 
 // MARK: - Previews
 #Preview {
-    HabitDetailView(habit: Habit.myHabits[2])
+    @Namespace var namespace
+    return HabitDetailView(habit: Habit.myHabits[2], namespace: namespace, showHabitDetail: .constant(true))
 }

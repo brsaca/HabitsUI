@@ -12,55 +12,55 @@ struct ContentView: View {
     let viewModel = ContentViewModel()
     @State private var showCompletedHabits: Bool = true
     @State private var showHabitDetail: Bool = false
+    @Namespace var namespace
     
     // Values for CompletedHabitsHeader animation 
     @State private var opacity: Double  = 0.0
     @State private var yOffset: CGFloat = 50
     @State private var scale: CGFloat = 0.1
     
-    private var habitSelected: Habit?
-    
     var body: some View {
         ZStack {
-            VStack {
-                // NavBar
-                NavBar
-                
-                // Your habits
-                YourHabits
-                
-                Spacer()
-                
-                if (!showCompletedHabits) {
-                    SectionHeader(kindView: .completed, action: {
-                        withAnimation{
-                            animateHeaderAppearance(for: false)
-                            showCompletedHabits.toggle()
-                        }
+            if(showHabitDetail) {
+                HabitDetailView(habit: Habit.myHabits[2], namespace: namespace, showHabitDetail: $showHabitDetail)
+                    .zIndex(1)
+            } else {
+                VStack {
+                    // NavBar
+                    NavBar
+                    
+                    // Your habits
+                    YourHabits
+                    
+                    Spacer()
+                    
+                    if (!showCompletedHabits) {
+                        SectionHeader(kindView: .completed, action: {
+                            withAnimation{
+                                animateHeaderAppearance(for: false)
+                                showCompletedHabits.toggle()
+                            }
                             
-                    })
-                    .opacity(opacity) // Start with 0 opacity
-                    .scaleEffect(x: scale, y: scale) // Start with scaled down size
-                    .offset(y: yOffset) // Start with offset
-                    .onAppear {
-                        withAnimation {
-                            animateHeaderAppearance(for: true)
+                        })
+                        .opacity(opacity) // Start with 0 opacity
+                        .scaleEffect(x: scale, y: scale) // Start with scaled down size
+                        .offset(y: yOffset) // Start with offset
+                        .onAppear {
+                            withAnimation {
+                                animateHeaderAppearance(for: true)
+                            }
                         }
                     }
                 }
-            }
-            .padding(.vertical, 20)
-            .padding(.horizontal, 30)
-            .sheet(isPresented: $showCompletedHabits) {
-                CompletedHabitsView(dismissCallback: {})
-                    .ignoresSafeArea(.all)
-            }
-            .fullScreenCover(isPresented: $showHabitDetail, content: {
-                if let habit = habitSelected {
-                    HabitDetailView(habit: habit)
+                .padding(.vertical, 20)
+                .padding(.horizontal, 30)
+                .sheet(isPresented: $showCompletedHabits) {
+                    CompletedHabitsView(dismissCallback: {})
+                        .ignoresSafeArea(.all)
                 }
-            })
+            }
         }
+        .animation(.default, value: showHabitDetail)
     }
 }
 
@@ -113,9 +113,8 @@ extension ContentView {
             .padding(.bottom, 14)
             
             // Amount habit
-            HabitCard(habit: Habit.myHabits[2])
+            HabitCard(habit: Habit.myHabits[2],namespace: namespace)
                 .onTapGesture {
-                    
                     showHabitDetail.toggle()
                 }
         }
