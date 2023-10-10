@@ -1,6 +1,6 @@
 Habits BooksUI App - UI design 👋
 
-Design App on SwiftUI from Dribbble [Habits Tracket App]([https://dribbble.com/shots/20954526-Habit-tracker-app))
+Design App on SwiftUI from Dribbble [Habits Tracket App](https://dribbble.com/shots/20954526-Habit-tracker-app)
 <p align="center">
 <a href="#">
 <img src="images/HabitsUI.gif" align="center" width=50%> 
