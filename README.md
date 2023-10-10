@@ -15,7 +15,7 @@ Design App on SwiftUI from Dribbble [Habits Tracket App]([https://dribbble.com/s
     <img alt="swiftUI" src="https://img.shields.io/badge/SwiftUI-17-blue.svg" />
   </a>
   <a href="#">
-    <img alt="status" src="https://img.shields.io/badge/status-inprogress-yellow.svg" />
+    <img alt="status" src="https://img.shields.io/badge/status-green-finish.svg" />
   </a>
   <br>
     <br>
